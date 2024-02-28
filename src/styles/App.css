@@ -1,6 +1,7 @@
 /* COMPONENTS */
 @import url('./components/Sidebar.css');
 @import url('./components/AdminLayout.css');
+@import url('./components/Dialog.css');
 
 :root {
   --first-color: #fff;
@@ -33,4 +34,55 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  border: 1px solid var(--third-color);
+}
+
+.form-footer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-footer button {
+  width: 40%;
+  margin: 0 auto;
+  background-color: var(--second-color);
+  color: var(--first-color);
+}
+
+.form-footer button:hover {
+  background-color: var(--third-color);
+  color: var(--second-color);
+}
+
+.form-footer .cancel-button {
+  background-color: var(--first-color);
+  color: var(--second-color);
+  border: 1px solid var(--second-color);
+}
+
+.form-footer .cancel-button:hover {
+  background-color: var(--second-color);
+  color: var(--first-color);
 }

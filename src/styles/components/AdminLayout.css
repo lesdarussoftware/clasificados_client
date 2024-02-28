@@ -20,11 +20,17 @@
 
 .adminPageHeader button:hover {
     background-color: var(--third-color);
+    color: var(--second-color);
 }
 
 .tableMask {
     width: 100%;
     overflow: scroll;
+    scrollbar-width: none;
+}
+
+.tableMask::-webkit-scrollbar {
+    display: none;
 }
 
 .adminTable {
