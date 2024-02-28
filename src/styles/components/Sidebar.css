@@ -8,11 +8,11 @@
     top: 0;
     left: -230px;
     width: 250px;
-    background-color: #22d2a0;
+    background-color: var(--second-color);
     padding: 10px;
     transition: left 0.3s ease-in-out;
     border-radius: 0 0 10px 0;
-    box-shadow: 3px 3px 5px #515050;
+    box-shadow: 3px 3px 5px var(--third-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -46,6 +46,17 @@
     gap: 5px;
 }
 
+.filterField button {
+    background-color: var(--first-color);
+    color: var(--second-color);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.filterField button:hover {
+    background-color: var(--third-color);
+}
+
 .navItem {
     transition: 100ms all;
     border-radius: 5px;
@@ -53,6 +64,6 @@
 
 .navItem:hover {
     cursor: pointer;
-    background-color: #515050;
-    color: #22d2a0;
+    background-color: var(--third-color);
+    color: var(--second-color);
 }

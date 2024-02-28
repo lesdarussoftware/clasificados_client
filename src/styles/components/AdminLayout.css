@@ -1,0 +1,33 @@
+.adminContainer {
+    padding: 20px;
+    margin-left: 50px;
+}
+
+.adminPageHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.adminPageHeader button {
+    background-color: var(--second-color);
+    color: var(--first-color);
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+.adminPageHeader button:hover {
+    background-color: var(--third-color);
+}
+
+.tableMask {
+    width: 100%;
+    overflow: scroll;
+}
+
+.adminTable {
+    width: 100%;
+    text-align: center;
+}

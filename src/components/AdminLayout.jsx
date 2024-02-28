@@ -14,7 +14,9 @@ export function AdminLayout({ children }) {
                 <li className="navItem" onClick={() => navigate('/admin/usuarios')}>Usuarios</li>
                 <li className="navItem">Salir</li>
             </Sidebar>
-            {children}
+            <div className="adminContainer">
+                {children}
+            </div>
         </>
     )
 }

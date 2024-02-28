@@ -1,11 +1,18 @@
 /* COMPONENTS */
 @import url('./components/Sidebar.css');
+@import url('./components/AdminLayout.css');
+
+:root {
+  --first-color: #fff;
+  --second-color: #22d2a0;
+  --third-color: #515050;
+}
 
 * {
   margin: 0;
   padding: 0;
   font-family: 'Inconsolata Variable', monospace;
-  color: #515050;
+  color: var(--third-color);
 }
 
 body {
@@ -21,14 +28,9 @@ button {
 }
 
 button {
-  background-color: #fff;
-  color: #22d2a0;
-  margin-bottom: 5px;
-  font-size: 1.2rem;
   transition: 100ms all;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #515050;
 }
