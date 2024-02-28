@@ -1,9 +1,11 @@
-@import url('./components/Filters.css');
+/* COMPONENTS */
+@import url('./components/Sidebar.css');
 
 * {
   margin: 0;
   padding: 0;
   font-family: 'Inconsolata Variable', monospace;
+  color: #515050;
 }
 
 body {
