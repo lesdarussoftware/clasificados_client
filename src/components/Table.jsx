@@ -1,7 +1,7 @@
-export function Table({ columns, rows }) {
+export function Table({ columns, rows, width }) {
     return (
         <div className="tableMask">
-            <table className="adminTable">
+            <table className="adminTable" style={{ width }}>
                 <thead>
                     <tr>
                         {columns.map(col => (
@@ -10,15 +10,19 @@ export function Table({ columns, rows }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map(row => {
-                        return columns.map(col => {
-                            const acc = col.accessor
-                            if (typeof acc === 'function') {
-                                return row[acc]
-                            } else {
-                                return acc(row)
-                            }
-                        })
+                    {rows.map((row, idx) => {
+                        const accessors = columns.map(col => col.accessor)
+                        return (
+                            <tr key={idx}>
+                                {accessors.map((acc, idx) => {
+                                    return (
+                                        <td key={idx}>
+                                            {typeof acc === 'function' ? acc(row) : row[acc] ?? '-'}
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        )
                     })}
                 </tbody>
             </table>

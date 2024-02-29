@@ -40,6 +40,11 @@ form {
   width: 100%;
 }
 
+small {
+  color: red;
+  margin-top: 5px;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;

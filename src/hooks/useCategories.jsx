@@ -25,6 +25,7 @@ export function useCategories() {
 
     return {
         categories,
+        setCategories,
         loadingCategories,
         setLoadingCategories,
         getCategories

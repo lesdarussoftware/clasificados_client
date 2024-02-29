@@ -6,7 +6,7 @@
 .nav {
     position: fixed;
     top: 0;
-    left: -230px;
+    left: -235px;
     width: 250px;
     background-color: var(--second-color);
     padding: 10px;
