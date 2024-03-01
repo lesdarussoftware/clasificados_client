@@ -10,20 +10,27 @@ export function Table({ columns, rows, width }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row, idx) => {
-                        const accessors = columns.map(col => col.accessor)
-                        return (
-                            <tr key={idx}>
-                                {accessors.map((acc, idx) => {
-                                    return (
-                                        <td key={idx}>
-                                            {typeof acc === 'function' ? acc(row) : row[acc] ?? '-'}
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                        )
-                    })}
+                    {rows.length === 0 ?
+                        <tr>
+                            <td colSpan={columns.length}>
+                                No hay datos para mostrar.
+                            </td>
+                        </tr> :
+                        rows.map((row, idx) => {
+                            const accessors = columns.map(col => col.accessor)
+                            return (
+                                <tr key={idx}>
+                                    {accessors.map((acc, idx) => {
+                                        return (
+                                            <td key={idx}>
+                                                {typeof acc === 'function' ? acc(row) : row[acc] ?? '-'}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </table>
         </div>

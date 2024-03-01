@@ -1,4 +1,5 @@
 import { MdDelete, MdEdit, MdAdd } from "react-icons/md";
+import toast from "react-hot-toast";
 
 import { useCategories } from "../hooks/useCategories";
 import { useForm } from "../hooks/useForm";
@@ -16,7 +17,7 @@ import { useState } from "react";
 export function Categories() {
 
     const { categories, setCategories, loadingCategories } = useCategories()
-    const { formData, handleChange, validate, reset, setFormData, disabled, errors } = useForm({
+    const { formData, handleChange, validate, reset, setFormData, disabled, setDisabled, errors } = useForm({
         defaultData: {
             id: '',
             name: ''
@@ -51,8 +52,10 @@ export function Categories() {
                 if (action === 'NEW') setCategories([data, ...categories])
                 if (action === 'EDIT') setCategories([data, ...categories.filter(cat => cat.id !== data.id)])
                 handleClose('new-edit')
+                toast.success(`Categoría ${action === 'NEW' ? 'creada' : 'editada'} correctamente.`)
             } else {
-                console.log(data.message)
+                setDisabled(false)
+                toast.error(data.message)
             }
         }
     }
@@ -62,8 +65,10 @@ export function Categories() {
         if (status === STATUS_CODES.OK) {
             setCategories([...categories.filter(cat => cat.id !== data.id)])
             handleClose('delete')
+            toast.success('Categoría eliminada correctamente.')
         } else {
-            console.log(data.message)
+            setDisabled(false)
+            toast.error(data.message)
         }
     }
 

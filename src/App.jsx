@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
 import { Home } from './pages/Home'
 import { Ads } from './pages/Ads'
@@ -10,15 +11,21 @@ import './styles/App.css'
 
 function App() {
   return (
-    <BrowserRouter basename='/clasificados/'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/admin/avisos' element={<Ads />} />
-        <Route path='/admin/categorias' element={<Categories />} />
-        <Route path='/admin/usuarios' element={<Users />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter basename='/clasificados/'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/admin/avisos' element={<Ads />} />
+          <Route path='/admin/categorias' element={<Categories />} />
+          <Route path='/admin/usuarios' element={<Users />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </BrowserRouter>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+      />
+    </>
   )
 }
 
