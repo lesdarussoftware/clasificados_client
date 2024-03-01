@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MdDelete, MdEdit, MdAdd } from "react-icons/md";
 import toast from "react-hot-toast";
 
@@ -12,7 +13,6 @@ import { Loader } from "../components/Loader";
 
 import { CATEGORIES_URL } from "../utils/urls";
 import { STATUS_CODES } from "../utils/statusCodes";
-import { useState } from "react";
 
 export function Categories() {
 
