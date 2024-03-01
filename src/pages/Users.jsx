@@ -152,7 +152,7 @@ export function Users() {
                             {action === 'NEW' &&
                                 <div className="form-group">
                                     <label htmlFor="password">Contraseña</label>
-                                    <input type="text" id="password" name="password" onChange={handleChange} value={formData.password} />
+                                    <input type="password" id="password" name="password" onChange={handleChange} value={formData.password} />
                                     {errors.password?.type === 'required' && <small>* La contraseña es requerida.</small>}
                                     {errors.password?.type === 'maxLength' && <small>* La contraseña es demasiado larga.</small>}
                                 </div>

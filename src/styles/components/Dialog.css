@@ -1,8 +1,5 @@
 dialog {
     position: fixed;
-    top: 25%;
-    left: calc(50% - (30% / 2));
-    width: 30%;
     padding: 20px;
     border: none;
     border-radius: 10px;
