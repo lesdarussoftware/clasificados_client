@@ -1,6 +1,6 @@
-export function Dialog({ children }) {
+export function Dialog({ children, type }) {
     return (
-        <dialog id="dialog">
+        <dialog id="dialog" className={type}>
             {children}
         </dialog>
     )

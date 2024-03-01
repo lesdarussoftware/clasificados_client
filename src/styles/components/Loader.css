@@ -1,0 +1,21 @@
+.loader {
+    animation: spin 2s linear infinite;
+    scale: 2;
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.loader line {
+    color: var(--second-color) !important;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

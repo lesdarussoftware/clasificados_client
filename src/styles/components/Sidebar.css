@@ -65,5 +65,5 @@
 .navItem:hover {
     cursor: pointer;
     background-color: var(--third-color);
-    color: var(--second-color);
+    color: var(--first-color);
 }

@@ -27,3 +27,8 @@ dialog::backdrop {
         opacity: 1;
     }
 }
+
+dialog h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}

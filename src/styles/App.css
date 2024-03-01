@@ -2,6 +2,7 @@
 @import url('./components/Sidebar.css');
 @import url('./components/AdminLayout.css');
 @import url('./components/Dialog.css');
+@import url('./components/Loader.css');
 
 :root {
   --first-color: #fff;

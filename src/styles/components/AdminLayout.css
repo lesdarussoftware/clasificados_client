@@ -45,14 +45,6 @@
     transition: 100ms all;
 }
 
-.adminTable tr:not(:has(th)):hover {
-    background-color: var(--third-color);
-}
-
-.adminTable tr:not(:has(th)):hover td {
-    color: var(--second-color);
-}
-
 .actions {
     margin-right: 5px;
     margin-left: 5px;
@@ -62,7 +54,7 @@
 }
 
 .actions:hover {
-    background-color: var(--first-color);
+    background-color: var(--third-color);
     color: var(--second-color);
 }
 
