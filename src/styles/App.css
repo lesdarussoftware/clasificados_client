@@ -41,6 +41,10 @@ form {
   width: 100%;
 }
 
+textarea {
+  resize: none;
+}
+
 small {
   color: red;
   margin-top: 5px;
@@ -94,4 +98,16 @@ small {
 .form-footer .cancel-button:hover {
   background-color: var(--second-color);
   color: var(--first-color);
+}
+
+.form-group:has(input[type="checkbox"]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  justify-content: start;
+}
+
+.form-group:has(input[type="checkbox"]) label {
+  margin-bottom: 0;
 }
