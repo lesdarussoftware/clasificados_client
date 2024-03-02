@@ -46,8 +46,7 @@
 }
 
 .actions {
-    margin-right: 5px;
-    margin-left: 5px;
+    margin: 5px;
     background-color: var(--second-color);
     color: var(--first-color);
     transition: 100ms all;

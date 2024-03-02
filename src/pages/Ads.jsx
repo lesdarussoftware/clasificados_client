@@ -137,12 +137,15 @@ export function Ads() {
             accessor: (row) => row.is_visible ? 'Sí' : 'No'
         },
         {
-            label: 'Ciudad',
+            label: 'Loc./Mun.',
             accessor: 'city'
         },
         {
             label: 'Provincia',
-            accessor: 'province'
+            accessor: (row) => row.province
+                .replace(', Antártida e Islas del Atlántico Sur', '')
+                .replace('Ciudad Autónoma de Buenos Aires', 'CABA')
+                .replace('Santiago', 'Sgo.')
         },
         {
             label: 'Dirección',
@@ -232,7 +235,7 @@ export function Ads() {
                         isPrivate
                     />
                     <Dialog type="delete">
-                        <h3>¿Borrar el usuario {formData.username}?</h3>
+                        <h3>¿Borrar el aviso #{formData.id}?</h3>
                         <div className="form-footer">
                             <button type="submit" onClick={handleDelete}>
                                 Confirmar

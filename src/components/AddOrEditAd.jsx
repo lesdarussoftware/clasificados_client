@@ -1,7 +1,4 @@
-import 'leaflet/dist/leaflet.css';
-
 import { Dialog } from "./Dialog";
-import {  Map } from './MapComponent';
 
 export function AddOrEditAd({
     action,
@@ -19,20 +16,15 @@ export function AddOrEditAd({
 
     const width = isPrivate ? '25%' : '33%'
 
-    var map = L.map('map', {
-        center: [51.505, -0.09],
-        zoom: 13
-    });
-
     return (
-        <Dialog type="new-edit" top={0} left={0} width="100%">
+        <Dialog type="new-edit" top={50} left={110} width="80%">
             <h3>{action === 'NEW' ? 'Nuevo aviso' : `Editar el aviso #${formData.id}`}</h3>
             <form>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', width }}>
                         <div className="form-group">
                             <label htmlFor="content">Contenido</label>
-                            <textarea name="content" id="content" value={formData.content} onChange={handleChange} rows={17} ></textarea>
+                            <textarea name="content" id="content" value={formData.content} onChange={handleChange} rows={16} ></textarea>
                             {errors.content?.type === 'maxLength' && <small>* El contenido es demasiado largo.</small>}
                         </div>
                     </div>
@@ -48,7 +40,7 @@ export function AddOrEditAd({
                             {errors.province?.type === 'required' && <small>* La provincia es requerida.</small>}
                         </div>
                         <div className="form-group">
-                            <label htmlFor="city">Municipio</label>
+                            <label htmlFor="city">Loc. / Mun.</label>
                             <select name="city" id="city" onChange={handleChange} value={formData.city} disabled={formData.province.length === 0}>
                                 <option value="">Seleccione</option>
                                 {cities.map(c => (
@@ -75,9 +67,9 @@ export function AddOrEditAd({
                             {errors.email?.type === 'maxLength' && <small>* El email es demasiado largo.</small>}
                         </div>
                         <div className="form-group">
-                            <label htmlFor="link">Enlace</label>
+                            <label htmlFor="link">Link (ej: red social)</label>
                             <input type="text" name="link" id="link" value={formData.link} onChange={handleChange} />
-                            {errors.link?.type === 'maxLength' && <small>* El enlace es demasiado largo.</small>}
+                            {errors.link?.type === 'maxLength' && <small>* El link es demasiado largo.</small>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="category_id">Categoría</label>
@@ -113,7 +105,7 @@ export function AddOrEditAd({
                         </div>
                     }
                 </div>
-                <div className="form-footer">
+                <div className="form-footer ff-ads">
                     <button type="button" className="cancel-button" onClick={() => handleClose('new-edit')}>
                         Cancelar
                     </button>
@@ -122,7 +114,6 @@ export function AddOrEditAd({
                     </button>
                 </div>
             </form>
-                <Map />
         </Dialog>
     )
 }
