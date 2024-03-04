@@ -1,8 +1,12 @@
+/* PAGES */
+@import url('./pages/Home.css');
+
 /* COMPONENTS */
 @import url('./components/Sidebar.css');
 @import url('./components/AdminLayout.css');
 @import url('./components/Dialog.css');
 @import url('./components/Loader.css');
+@import url('./components/AdsContainer.css');
 
 :root {
   --first-color: #fff;

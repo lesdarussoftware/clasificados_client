@@ -23,7 +23,7 @@ export function AddOrEditAd({
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', width }}>
                         <div className="form-group">
-                            <label htmlFor="content">Contenido</label>
+                            <label htmlFor="content">Contenido {formData.content.length}/255</label>
                             <textarea name="content" id="content" value={formData.content} onChange={handleChange} rows={16} ></textarea>
                             {errors.content?.type === 'maxLength' && <small>* El contenido es demasiado largo.</small>}
                         </div>

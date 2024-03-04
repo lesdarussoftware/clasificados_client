@@ -40,7 +40,7 @@ export function Ads() {
         },
         rules: {
             content: {
-                maxLength: 225
+                maxLength: 255
             },
             file: {
                 maxLength: 55

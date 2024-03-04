@@ -1,0 +1,33 @@
+.adsContainer {
+    padding: 10px;
+    margin: 0 0 0 50px;
+    height: 91vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.ad {
+    background-color: aliceblue;
+    width: fit-content;
+    max-width: calc(10% + 15px);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px var(--third-color);
+    cursor: pointer;
+    transition: 100ms all;
+    word-wrap: break-word;
+}
+
+.ad:hover {
+    scale: 1.1;
+}
+
+.ad .adCategory {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
