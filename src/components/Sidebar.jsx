@@ -17,7 +17,7 @@ export function Sidebar({ children, childrenType }) {
                     {childrenType === 'FILTROS' &&
                         <li className="filterField">
                             <button>Reiniciar</button>
-                            <button onClick={handleShow}>Aplicar</button>
+                            <button onClick={handleShow}>Buscar</button>
                         </li>
                     }
                 </ul>

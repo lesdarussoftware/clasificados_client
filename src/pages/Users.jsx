@@ -31,6 +31,7 @@ export function Users() {
             },
             password: {
                 required: true,
+                minLength: 8,
                 maxLength: 255
             },
             role: {
@@ -154,6 +155,7 @@ export function Users() {
                                     <label htmlFor="password">Contraseña</label>
                                     <input type="password" id="password" name="password" onChange={handleChange} value={formData.password} />
                                     {errors.password?.type === 'required' && <small>* La contraseña es requerida.</small>}
+                                    {errors.password?.type === 'minLength' && <small>* La contraseña es demasiado corta.</small>}
                                     {errors.password?.type === 'maxLength' && <small>* La contraseña es demasiado larga.</small>}
                                 </div>
                             }

@@ -1,0 +1,17 @@
+.loginContainer {
+    width: 90vw;
+    height: 90vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer form {
+    width: 40%;
+}
+
+.loginContainer form .form-footer button{
+    font-size: 1.1rem;
+    width: 50%;
+}

@@ -1,5 +1,6 @@
 /* PAGES */
 @import url('./pages/Home.css');
+@import url('./pages/Login.css');
 
 /* COMPONENTS */
 @import url('./components/Sidebar.css');

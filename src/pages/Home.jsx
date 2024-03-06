@@ -19,7 +19,7 @@ import { STATUS_CODES } from "../utils/statusCodes";
 
 export function Home() {
 
-    const { ads, setAds, loadingAds, provinces, cities, getCities } = useAds()
+    const { ads, setAds, loadingAds, provinces, cities, getCities } = useAds({ includeInvisibles: false })
     const { categories, loadingCategories } = useCategories()
     const { formData, handleChange, validate, reset, setFormData, disabled, setDisabled, errors } = useForm({
         defaultData: {
@@ -112,6 +112,10 @@ export function Home() {
                 <Loader /> :
                 <>
                     <Sidebar childrenType="FILTROS">
+                        <li className="filterField">
+                            <label htmlFor="category_id">Palabras clave</label>
+                            <input type="text" id="" name="" />
+                        </li>
                         <li className="filterField">
                             <label htmlFor="category_id">Categoría</label>
                             <select name="" id=""></select>

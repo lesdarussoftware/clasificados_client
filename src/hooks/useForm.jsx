@@ -33,7 +33,6 @@ export function useForm({ defaultData, rules }) {
                 setDisabled(false)
                 flag = false
             }
-            console.log(rules)
             if (rules[key]?.maxLength && formData[key]?.length > rules[key]?.maxLength) {
                 result[key] = { ...result[key], type: 'maxLength' }
                 setDisabled(false)

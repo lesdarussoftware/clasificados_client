@@ -4,9 +4,9 @@ import { useApi } from "./useApi";
 
 import { ADS_URL } from '../utils/urls'
 
-export function useAds() {
+export function useAds({ includeInvisibles }) {
 
-    const { get } = useApi(ADS_URL)
+    const { get } = useApi(ADS_URL + (includeInvisibles ? '/all' : ''))
 
     const [ads, setAds] = useState([])
     const [provinces, setProvinces] = useState([])

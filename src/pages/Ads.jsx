@@ -19,7 +19,7 @@ import { STATUS_CODES } from "../utils/statusCodes";
 
 export function Ads() {
 
-    const { ads, setAds, loadingAds, provinces, cities, getCities } = useAds()
+    const { ads, setAds, loadingAds, provinces, cities, getCities } = useAds({ includeInvisibles: true })
     const { categories, loadingCategories } = useCategories()
     const { formData, handleChange, validate, reset, setFormData, disabled, setDisabled, errors } = useForm({
         defaultData: {
