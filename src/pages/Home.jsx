@@ -19,7 +19,6 @@ import { STATUS_CODES } from "../utils/statusCodes";
 
 export function Home() {
 
-    const { ads, setAds, loadingAds, provinces, cities, getCities } = useAds({ includeInvisibles: false })
     const { categories, loadingCategories } = useCategories()
     const { formData, handleChange, validate, reset, setFormData, disabled, setDisabled, errors } = useForm({
         defaultData: {
@@ -70,6 +69,20 @@ export function Home() {
     })
     const { post } = useApi(ADS_URL)
     const [action, setAction] = useState(null)
+    const [filter, setFilter] = useState({
+        content: '',
+        category_id: '',
+        province: '',
+        city: '',
+        from: '',
+        to: ''
+    })
+    const [page, setPage] = useState(0)
+    const { ads, setAds, loadingAds, provinces, cities, getCities, getAds, count } = useAds({
+        includeInvisibles: false,
+        filter,
+        page
+    })
 
     const handleOpen = (type) => {
         const dialog = document.querySelector(`.${type}`)
@@ -106,35 +119,84 @@ export function Home() {
         }
     }, [formData.province, provinces])
 
+    useEffect(() => {
+        if (filter.province.length > 0) {
+            getCities(provinces.find(p => p.nombre === filter.province)?.id)
+        } else {
+            setFilter({ ...filter, city: '' })
+        }
+    }, [filter.province, provinces])
+
+    const handleChangeFilter = e => {
+        setFilter({
+            ...filter,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleReset = () => {
+        setFilter({
+            content: '',
+            category_id: '',
+            province: '',
+            city: '',
+            from: '',
+            to: ''
+        })
+    }
+
+    const handleSubmitFilter = async () => {
+        await getAds()
+    }
+
+    useEffect(() => {
+        getAds()
+    }, [page])
+
     return (
         <>
             {disabled || loadingAds || loadingCategories ?
                 <Loader /> :
                 <>
-                    <Sidebar childrenType="FILTROS">
+                    <Sidebar childrenType="FILTROS" handleSubmit={handleSubmitFilter} handleReset={handleReset}>
                         <li className="filterField">
-                            <label htmlFor="category_id">Palabras clave</label>
-                            <input type="text" id="" name="" />
+                            <label htmlFor="content">Palabras clave</label>
+                            <input type="text" id="content" name="content" value={filter.content} onChange={handleChangeFilter} />
                         </li>
                         <li className="filterField">
                             <label htmlFor="category_id">Categoría</label>
-                            <select name="" id=""></select>
+                            <select name="category_id" id="category_id" value={filter.category_id} onChange={handleChangeFilter}>
+                                <option value="">Seleccione</option>
+                                {categories.map(c => (
+                                    <option key={c.id} value={c.id}>{c.name}</option>
+                                ))}
+                            </select>
                         </li>
                         <li className="filterField">
                             <label htmlFor="province">Provincia</label>
-                            <select name="" id=""></select>
+                            <select name="province" id="province" value={filter.province} onChange={handleChangeFilter}>
+                                <option value="">Seleccione</option>
+                                {provinces.map(p => (
+                                    <option key={p.id} value={p.nombre}>{p.nombre}</option>
+                                ))}
+                            </select>
                         </li>
                         <li className="filterField">
-                            <label htmlFor="province">Ciudad</label>
-                            <select name="" id=""></select>
+                            <label htmlFor="city">Ciudad</label>
+                            <select name="city" id="city" value={filter.city} onChange={handleChangeFilter}>
+                                <option value="">Seleccione</option>
+                                {cities.map(c => (
+                                    <option key={c.id} value={c.nombre}>{c.nombre}</option>
+                                ))}
+                            </select>
                         </li>
                         <li className="filterField">
                             <label htmlFor="from">Desde</label>
-                            <input type="date" name="" id="" />
+                            <input type="date" name="from" id="from" value={filter.from} onChange={handleChangeFilter} />
                         </li>
                         <li className="filterField">
                             <label htmlFor="to">Hasta</label>
-                            <input type="date" name="" id="" />
+                            <input type="date" name="to" id="to" value={filter.to} onChange={handleChangeFilter} />
                         </li>
                     </Sidebar>
                     <section className="homeHeader">
@@ -160,7 +222,12 @@ export function Home() {
                         provinces={provinces}
                         cities={cities}
                     />
-                    <AdsContainer ads={ads} />
+                    <AdsContainer
+                        ads={ads}
+                        count={count}
+                        page={page}
+                        setPage={setPage}
+                    />
                 </>
             }
         </>

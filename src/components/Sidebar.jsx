@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function Sidebar({ children, childrenType }) {
+export function Sidebar({ children, childrenType, handleSubmit, handleReset }) {
 
     const [show, setShow] = useState(true)
 
@@ -16,8 +16,11 @@ export function Sidebar({ children, childrenType }) {
                     {children}
                     {childrenType === 'FILTROS' &&
                         <li className="filterField">
-                            <button>Reiniciar</button>
-                            <button onClick={handleShow}>Buscar</button>
+                            <button onClick={handleReset}>Reiniciar</button>
+                            <button onClick={() => {
+                                handleSubmit()
+                                handleShow()
+                            }}>Buscar</button>
                         </li>
                     }
                 </ul>

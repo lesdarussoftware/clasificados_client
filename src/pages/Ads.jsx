@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MdDelete, MdEdit, MdAdd } from "react-icons/md";
 import toast from "react-hot-toast";
 import { format } from 'date-fns'
 
+import { AuthContext } from "../providers/AuthProvider";
 import { useAds } from "../hooks/useAds";
 import { useCategories } from "../hooks/useCategories";
 import { useForm } from "../hooks/useForm";
@@ -13,13 +15,18 @@ import { Table } from "../components/Table";
 import { Dialog } from "../components/Dialog";
 import { Loader } from "../components/Loader";
 import { AddOrEditAd } from "../components/AddOrEditAd";
+import { Pagination } from "../components/Pagination";
 
 import { ADS_URL } from "../utils/urls";
 import { STATUS_CODES } from "../utils/statusCodes";
 
 export function Ads() {
 
-    const { ads, setAds, loadingAds, provinces, cities, getCities } = useAds({ includeInvisibles: true })
+    const { auth } = useContext(AuthContext)
+
+    const navigate = useNavigate()
+    const [page, setPage] = useState(0)
+    const { ads, setAds, loadingAds, provinces, cities, getCities, count, getAds } = useAds({ includeInvisibles: true, page })
     const { categories, loadingCategories } = useCategories()
     const { formData, handleChange, validate, reset, setFormData, disabled, setDisabled, errors } = useForm({
         defaultData: {
@@ -71,6 +78,10 @@ export function Ads() {
     const { post, put, destroy } = useApi(ADS_URL)
     const [action, setAction] = useState(null)
 
+    useEffect(() => {
+        if (!auth) navigate('/admin')
+    }, [])
+
     const handleOpen = (type) => {
         const dialog = document.querySelector(`.${type}`)
         dialog.showModal()
@@ -118,6 +129,10 @@ export function Ads() {
             setFormData({ ...formData, city: '' })
         }
     }, [formData.province, provinces])
+
+    useEffect(() => {
+        getAds()
+    }, [page])
 
     const columns = [
         {
@@ -208,7 +223,7 @@ export function Ads() {
         <AdminLayout>
             {disabled || loadingAds || loadingCategories ?
                 <Loader /> :
-                <>
+                <Pagination count={count} page={page} setPage={setPage}>
                     <div className="adminPageHeader">
                         <h2>Avisos</h2>
                         <button
@@ -250,7 +265,7 @@ export function Ads() {
                         rows={ads}
                         width="60%"
                     />
-                </>
+                </Pagination>
             }
         </AdminLayout>
     )

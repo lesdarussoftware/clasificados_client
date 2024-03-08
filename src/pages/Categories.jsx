@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MdDelete, MdEdit, MdAdd } from "react-icons/md";
 import toast from "react-hot-toast";
 
+import { AuthContext } from "../providers/AuthProvider";
 import { useCategories } from "../hooks/useCategories";
 import { useForm } from "../hooks/useForm";
 import { useApi } from "../hooks/useApi";
@@ -16,6 +18,9 @@ import { STATUS_CODES } from "../utils/statusCodes";
 
 export function Categories() {
 
+    const { auth } = useContext(AuthContext)
+
+    const navigate = useNavigate()
     const { categories, setCategories, loadingCategories } = useCategories()
     const { formData, handleChange, validate, reset, setFormData, disabled, setDisabled, errors } = useForm({
         defaultData: {
@@ -31,6 +36,10 @@ export function Categories() {
     })
     const { post, put, destroy } = useApi(CATEGORIES_URL)
     const [action, setAction] = useState(null)
+
+    useEffect(() => {
+        if (!auth) navigate('/admin')
+    }, [])
 
     const handleOpen = (type) => {
         const dialog = document.querySelector(`.${type}`)

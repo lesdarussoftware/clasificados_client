@@ -8,6 +8,7 @@
 @import url('./components/Dialog.css');
 @import url('./components/Loader.css');
 @import url('./components/AdsContainer.css');
+@import url('./components/Pagination.css');
 
 :root {
   --first-color: #fff;
