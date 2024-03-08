@@ -8,16 +8,16 @@ export function useAds({ includeInvisibles, filter, page }) {
 
     const setFilters = () => {
         let result = ''
-        if (filter.content) result += `${result.length > 0 ? '&' : ''}content=${filter.content}`
-        if (filter.category_id) result += `${result.length > 0 ? '&' : ''}category_id=${filter.category_id}`
-        if (filter.province) result += `${result.length > 0 ? '&' : ''}province=${filter.province}`
-        if (filter.city) result += `${result.length > 0 ? '&' : ''}city=${filter.city}`
-        if (filter.from) result += `${result.length > 0 ? '&' : ''}from=${filter.from}`
-        if (filter.to) result += `${result.length > 0 ? '&' : ''}to=${filter.to}`
+        if (filter.content) result += `${result.length > 0 ? '&' : ''}?content=${filter.content}`
+        if (filter.category_id) result += `${result.length > 0 ? '&' : ''}?category_id=${filter.category_id}`
+        if (filter.province) result += `${result.length > 0 ? '&' : ''}?province=${filter.province}`
+        if (filter.city) result += `${result.length > 0 ? '&' : ''}?city=${filter.city}`
+        if (filter.from) result += `${result.length > 0 ? '&' : ''}?from=${filter.from}`
+        if (filter.to) result += `${result.length > 0 ? '&' : ''}?to=${filter.to}`
         return result
     }
 
-    const { get } = useApi(ADS_URL + (includeInvisibles ? '/all' : '') + (filter ? `${setFilters()}` : '') + (page ? `?page=${page}` : ''))
+    const { get } = useApi(ADS_URL + (includeInvisibles ? '/all' : '') + (filter ? setFilters() : '') + (page ? `?page=${page}` : ''))
 
     const [ads, setAds] = useState([])
     const [provinces, setProvinces] = useState([])

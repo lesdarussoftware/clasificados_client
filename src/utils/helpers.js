@@ -9,3 +9,9 @@ export const handleClose = (type, setAction, reset) => {
     if (setAction) setAction(null)
     if (reset) reset()
 }
+
+export function setLocalDate(date) {
+    const original = new Date(date)
+    original.setHours(original.getHours() - 3)
+    return original
+}

@@ -2,7 +2,7 @@ import { format } from "date-fns";
 
 import { Pagination } from "./Pagination";
 
-import { handleOpen } from "../utils/helpers";
+import { handleOpen, setLocalDate } from "../utils/helpers";
 
 export function AdsContainer({ ads, count, page, setPage, setView }) {
     return (
@@ -20,7 +20,7 @@ export function AdsContainer({ ads, count, page, setPage, setView }) {
                             {ad.category.name}
                         </p>
                         <p className="adDate">
-                            {format(new Date(ad.created_at), 'dd-MM-yy')}
+                            {format(setLocalDate(ad.created_at), 'dd-MM-yy')}
                         </p>
                     </div>
                 ))}
