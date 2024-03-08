@@ -15,6 +15,7 @@ import { Loader } from "../components/Loader";
 
 import { CATEGORIES_URL } from "../utils/urls";
 import { STATUS_CODES } from "../utils/statusCodes";
+import { handleClose, handleOpen } from "../utils/helpers";
 
 export function Categories() {
 
@@ -41,18 +42,6 @@ export function Categories() {
         if (!auth) navigate('/admin')
     }, [])
 
-    const handleOpen = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog.showModal()
-    }
-
-    const handleClose = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog?.close()
-        setAction(null)
-        reset()
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (validate()) {
@@ -60,7 +49,7 @@ export function Categories() {
             if (status === STATUS_CODES.OK) {
                 if (action === 'NEW') setCategories([data, ...categories])
                 if (action === 'EDIT') setCategories([data, ...categories.filter(cat => cat.id !== data.id)])
-                handleClose('new-edit')
+                handleClose('new-edit', setAction, reset)
                 toast.success(`Categoría ${action === 'NEW' ? 'creada' : 'editada'} correctamente.`)
             } else {
                 setDisabled(false)
@@ -73,7 +62,7 @@ export function Categories() {
         const { status, data } = await destroy(formData)
         if (status === STATUS_CODES.OK) {
             setCategories([...categories.filter(cat => cat.id !== data.id)])
-            handleClose('delete')
+            handleClose('delete', setAction, reset)
             toast.success('Categoría eliminada correctamente.')
         } else {
             setDisabled(false)
@@ -146,7 +135,7 @@ export function Categories() {
                                 {errors.name?.type === 'maxLength' && <small>* El nombre es demasiado largo.</small>}
                             </div>
                             <div className="form-footer">
-                                <button type="button" className="cancel-button" onClick={() => handleClose('new-edit')}>
+                                <button type="button" className="cancel-button" onClick={() => handleClose('new-edit', setAction, reset)}>
                                     Cancelar
                                 </button>
                                 <button type="submit" onClick={handleSubmit} disabled={disabled}>
@@ -161,7 +150,7 @@ export function Categories() {
                             <button type="submit" onClick={handleDelete}>
                                 Confirmar
                             </button>
-                            <button type="button" className="cancel-button" onClick={() => handleClose('delete')}>
+                            <button type="button" className="cancel-button" onClick={() => handleClose('delete', setAction, reset)}>
                                 Cancelar
                             </button>
                         </div>

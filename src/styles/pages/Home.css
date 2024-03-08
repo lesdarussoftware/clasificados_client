@@ -4,3 +4,37 @@
     padding: 10px;
     margin: 0 0 0 50px;
 }
+
+.dialog-view-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog-view-footer .close-button {
+    background-color: var(--second-color);
+    color: var(--first-color);
+    padding: 10px 20px;
+    transition: 100ms all;
+}
+
+.dialog-view-footer .close-button:hover {
+    background-color: var(--third-color);
+    color: var(--second-color);
+}
+
+.ad-details p {
+    margin-bottom: 10px;
+    border: 1px solid var(--third-color);
+    padding: 5px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.ad-details ul {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.ad-details ul li {
+    margin-bottom: 10px;
+}

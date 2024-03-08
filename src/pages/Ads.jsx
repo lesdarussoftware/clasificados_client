@@ -19,6 +19,7 @@ import { Pagination } from "../components/Pagination";
 
 import { ADS_URL } from "../utils/urls";
 import { STATUS_CODES } from "../utils/statusCodes";
+import { handleClose, handleOpen } from "../utils/helpers";
 
 export function Ads() {
 
@@ -82,18 +83,6 @@ export function Ads() {
         if (!auth) navigate('/admin')
     }, [])
 
-    const handleOpen = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog.showModal()
-    }
-
-    const handleClose = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog?.close()
-        setAction(null)
-        reset()
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (validate()) {
@@ -101,7 +90,7 @@ export function Ads() {
             if (status === STATUS_CODES.OK) {
                 if (action === 'NEW') setAds([data, ...ads])
                 if (action === 'EDIT') setAds([data, ...ads.filter(a => a.id !== data.id)])
-                handleClose('new-edit')
+                handleClose('new-edit', setAction, reset)
                 toast.success(`Aviso ${action === 'NEW' ? 'creado' : 'editado'} correctamente.`)
             } else {
                 setDisabled(false)
@@ -114,7 +103,7 @@ export function Ads() {
         const { status, data } = await destroy(formData)
         if (status === STATUS_CODES.OK) {
             setAds([...ads.filter(a => a.id !== data.id)])
-            handleClose('delete')
+            handleClose('delete', setAction, reset)
             toast.success('Aviso eliminado correctamente.')
         } else {
             setDisabled(false)
@@ -242,6 +231,8 @@ export function Ads() {
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                         handleClose={handleClose}
+                        reset={reset}
+                        setAction={setAction}
                         errors={errors}
                         disabled={disabled}
                         categories={categories}
@@ -255,7 +246,7 @@ export function Ads() {
                             <button type="submit" onClick={handleDelete}>
                                 Confirmar
                             </button>
-                            <button type="button" className="cancel-button" onClick={() => handleClose('delete')}>
+                            <button type="button" className="cancel-button" onClick={() => handleClose('delete', setAction, reset)}>
                                 Cancelar
                             </button>
                         </div>

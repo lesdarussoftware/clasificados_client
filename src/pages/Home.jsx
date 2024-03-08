@@ -16,6 +16,7 @@ import { AdsContainer } from "../components/AdsContainer";
 
 import { ADS_URL } from "../utils/urls";
 import { STATUS_CODES } from "../utils/statusCodes";
+import { handleClose, handleOpen } from "../utils/helpers";
 
 export function Home() {
 
@@ -83,18 +84,7 @@ export function Home() {
         filter,
         page
     })
-
-    const handleOpen = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog.showModal()
-    }
-
-    const handleClose = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog?.close()
-        setAction(null)
-        reset()
-    }
+    const [view, setView] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -102,7 +92,7 @@ export function Home() {
             const { status, data } = await post(formData)
             if (status === STATUS_CODES.OK) {
                 setAds([data, ...ads])
-                handleClose('new-edit')
+                handleClose('new-edit', setAction, reset)
                 toast.success('Aviso creado correctamente.')
             } else {
                 setDisabled(false)
@@ -216,17 +206,42 @@ export function Home() {
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                         handleClose={handleClose}
+                        reset={reset}
+                        setAction={setAction}
                         errors={errors}
                         disabled={disabled}
                         categories={categories}
                         provinces={provinces}
                         cities={cities}
                     />
+                    <Dialog type="view-ad" top="10%">
+                        {view &&
+                            <div className="ad-details">
+                                <p>{view.content}</p>
+                                <ul>
+                                    <li>Provincia: {view.province}</li>
+                                    <li>Localidad/Municipio: {view.city}</li>
+                                    <li>Dirección: {view.address}</li>
+                                    <li>Teléfono: {view.phone}</li>
+                                    <li>Email: {view.email}</li>
+                                    <li>Link: {view.link}</li>
+                                    <li>Categoría: {view.category.name}</li>
+                                    <li>Fecha: {format(new Date(view.created_at), 'dd/MM/yy')}</li>
+                                </ul>
+                            </div>
+                        }
+                        <div className="dialog-view-footer">
+                            <button type="button" className="close-button" onClick={() => handleClose('view-ad')}>
+                                Cerrar
+                            </button>
+                        </div>
+                    </Dialog>
                     <AdsContainer
                         ads={ads}
                         count={count}
                         page={page}
                         setPage={setPage}
+                        setView={setView}
                     />
                 </>
             }

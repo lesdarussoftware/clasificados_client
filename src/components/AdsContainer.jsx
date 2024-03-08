@@ -2,12 +2,17 @@ import { format } from "date-fns";
 
 import { Pagination } from "./Pagination";
 
-export function AdsContainer({ ads, count, page, setPage }) {
+import { handleOpen } from "../utils/helpers";
+
+export function AdsContainer({ ads, count, page, setPage, setView }) {
     return (
         <Pagination count={count} page={page} setPage={setPage}>
             <section className="adsContainer">
                 {ads.map(ad => (
-                    <div key={ad.id} className="ad">
+                    <div key={ad.id} className="ad" onClick={() => {
+                        handleOpen('view-ad')
+                        setView(ad)
+                    }}>
                         <p className="adContent">
                             {ad.content}
                         </p>

@@ -15,6 +15,7 @@ import { Loader } from "../components/Loader";
 
 import { USERS_URL } from "../utils/urls";
 import { STATUS_CODES } from "../utils/statusCodes";
+import { handleClose, handleOpen } from "../utils/helpers";
 
 export function Users() {
 
@@ -51,18 +52,6 @@ export function Users() {
         if (!auth) navigate('/admin')
     }, [])
 
-    const handleOpen = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog.showModal()
-    }
-
-    const handleClose = (type) => {
-        const dialog = document.querySelector(`.${type}`)
-        dialog?.close()
-        setAction(null)
-        reset()
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (validate()) {
@@ -70,7 +59,7 @@ export function Users() {
             if (status === STATUS_CODES.OK) {
                 if (action === 'NEW') setUsers([data, ...users])
                 if (action === 'EDIT') setUsers([data, ...users.filter(u => u.id !== data.id)])
-                handleClose('new-edit')
+                handleClose('new-edit', setAction, reset)
                 toast.success(`Usuario ${action === 'NEW' ? 'creado' : 'editado'} correctamente.`)
             } else {
                 setDisabled(false)
@@ -83,7 +72,7 @@ export function Users() {
         const { status, data } = await destroy(formData)
         if (status === STATUS_CODES.OK) {
             setUsers([...users.filter(u => u.id !== data.id)])
-            handleClose('delete')
+            handleClose('delete', setAction, reset)
             toast.success('Usuario eliminado correctamente.')
         } else {
             setDisabled(false)
@@ -178,7 +167,7 @@ export function Users() {
                                 {errors.role?.type === 'required' && <small>* El rol es requerido.</small>}
                             </div>
                             <div className="form-footer">
-                                <button type="button" className="cancel-button" onClick={() => handleClose('new-edit')}>
+                                <button type="button" className="cancel-button" onClick={() => handleClose('new-edit', setAction, reset)}>
                                     Cancelar
                                 </button>
                                 <button type="submit" onClick={handleSubmit} disabled={disabled}>
@@ -193,7 +182,7 @@ export function Users() {
                             <button type="submit" onClick={handleDelete}>
                                 Confirmar
                             </button>
-                            <button type="button" className="cancel-button" onClick={() => handleClose('delete')}>
+                            <button type="button" className="cancel-button" onClick={() => handleClose('delete', setAction, reset)}>
                                 Cancelar
                             </button>
                         </div>

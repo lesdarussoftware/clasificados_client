@@ -5,6 +5,8 @@ export function AddOrEditAd({
     formData,
     handleChange,
     handleClose,
+    reset,
+    setAction,
     handleSubmit,
     errors,
     disabled,
@@ -106,7 +108,7 @@ export function AddOrEditAd({
                     }
                 </div>
                 <div className="form-footer ff-ads">
-                    <button type="button" className="cancel-button" onClick={() => handleClose('new-edit')}>
+                    <button type="button" className="cancel-button" onClick={() => handleClose('new-edit', setAction, reset)}>
                         Cancelar
                     </button>
                     <button type="submit" onClick={handleSubmit} disabled={disabled}>
