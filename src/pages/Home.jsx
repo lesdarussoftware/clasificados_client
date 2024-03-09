@@ -214,7 +214,7 @@ export function Home() {
                         provinces={provinces}
                         cities={cities}
                     />
-                    <Dialog type="view-ad" top="10%">
+                    <Dialog type="view-ad" top="10%" width="60%" left="20%">
                         {view &&
                             <div className="ad-details">
                                 <p>{view.content}</p>

@@ -19,18 +19,18 @@ export function AddOrEditAd({
     const width = isPrivate ? '25%' : '33%'
 
     return (
-        <Dialog type="new-edit" top={50} left={110} width="80%">
+        <Dialog type="new-edit" top="1%" left="1%" width="95%">
             <h3>{action === 'NEW' ? 'Nuevo aviso' : `Editar el aviso #${formData.id}`}</h3>
             <form>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', width }}>
+                <div className="ad-form-container">
+                    <div style={{ width }} className="ad-form-column">
                         <div className="form-group">
                             <label htmlFor="content">Contenido {formData.content.length}/255</label>
                             <textarea name="content" id="content" value={formData.content} onChange={handleChange} rows={16} ></textarea>
                             {errors.content?.type === 'maxLength' && <small>* El contenido es demasiado largo.</small>}
                         </div>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', width }}>
+                    <div style={{ width }} className="ad-form-column">
                         <div className="form-group">
                             <label htmlFor="province">Provincia</label>
                             <select name="province" id="province" onChange={handleChange} value={formData.province}>
@@ -62,7 +62,7 @@ export function AddOrEditAd({
                             {errors.phone?.type === 'maxLength' && <small>* El teléfono es demasiado largo.</small>}
                         </div>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', width }}>
+                    <div style={{ width }} className="ad-form-column">
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} />
@@ -89,7 +89,7 @@ export function AddOrEditAd({
                         </div>
                     </div>
                     {isPrivate &&
-                        <div style={{ display: 'flex', flexDirection: 'column', width }}>
+                        <div style={{ width }} className="ad-form-column">
                             <>
                                 <div className="form-group">
                                     <label htmlFor="file">Archivo</label>

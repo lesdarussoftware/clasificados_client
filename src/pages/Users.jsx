@@ -176,7 +176,7 @@ export function Users() {
                             </div>
                         </form>
                     </Dialog>
-                    <Dialog type="delete">
+                    <Dialog type="delete" width="60%" left="20%">
                         <h3>¿Borrar el usuario {formData.username}?</h3>
                         <div className="form-footer">
                             <button type="submit" onClick={handleDelete}>

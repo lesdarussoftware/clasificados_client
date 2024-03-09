@@ -240,7 +240,7 @@ export function Ads() {
                         cities={cities}
                         isPrivate
                     />
-                    <Dialog type="delete">
+                    <Dialog type="delete" width="60%" left="20%">
                         <h3>¿Borrar el aviso #{formData.id}?</h3>
                         <div className="form-footer">
                             <button type="submit" onClick={handleDelete}>

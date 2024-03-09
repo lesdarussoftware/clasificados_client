@@ -1,0 +1,20 @@
+.ad-form-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ad-form-container .ad-form-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 750px) {
+    .ad-form-container {
+        flex-direction: column;
+    }
+
+    .ad-form-container .ad-form-column {
+        width: 100% !important;
+    }
+}

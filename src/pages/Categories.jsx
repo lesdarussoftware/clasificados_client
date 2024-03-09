@@ -144,7 +144,7 @@ export function Categories() {
                             </div>
                         </form>
                     </Dialog>
-                    <Dialog type="delete">
+                    <Dialog type="delete" width="60%" left="20%">
                         <h3>¿Borrar la categoría {formData.name}?</h3>
                         <div className="form-footer">
                             <button type="submit" onClick={handleDelete}>
