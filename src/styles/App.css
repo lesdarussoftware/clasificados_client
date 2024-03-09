@@ -25,7 +25,12 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--second-color);
 }
 
 select,
@@ -134,6 +139,6 @@ small {
 
 @media (max-width: 450px) {
   .ff-ads {
-      width: 60%;
+    width: 60%;
   }
 }

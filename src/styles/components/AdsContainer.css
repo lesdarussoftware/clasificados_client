@@ -1,7 +1,8 @@
 .adsContainer {
     padding: 10px;
+    padding-bottom: 0;
     margin: 0 0 0 50px;
-    height: 91vh;
+    min-height: 91vh;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -16,14 +17,13 @@
     max-width: calc(10% + 15px);
     padding: 5px;
     border-radius: 5px;
-    box-shadow: 3px 3px 5px var(--third-color);
     cursor: pointer;
     transition: 100ms all;
     word-wrap: break-word;
 }
 
 .ad:hover {
-    scale: 1.1;
+    box-shadow: 0 0 5px var(--third-color);
     cursor: pointer;
 }
 
@@ -32,6 +32,16 @@
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
+}
+
+.no-content-text {
+    text-align: center;
+    margin-top: 25px;
+}
+
+footer {
+    text-align: right;
+    margin: 20px;
 }
 
 @media (max-width: 600px) {
@@ -44,5 +54,9 @@
 @media (max-width: 400px) {
     .ad {
         width: 100%;
+    }
+
+    footer {
+        text-align: center;
     }
 }

@@ -190,6 +190,10 @@ export function Home() {
                         </li>
                     </Sidebar>
                     <section className="homeHeader">
+                        <article>
+                            <h1>NOAvisos</h1>
+                            <p>Si querés fijar tu aviso en la primera página, <a href="https://api.whatsapp.com/send?phone=5493876842691" target="_blank" rel="noopener noreferrer">comunicate con nosotros</a>.</p>
+                        </article>
                         <button
                             className="addBtn"
                             onClick={() => {
