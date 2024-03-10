@@ -35,6 +35,7 @@ export function Ads() {
             content: '',
             file: '',
             is_visible: false,
+            promoted: false,
             province: '',
             city: '',
             address: '',
@@ -49,9 +50,6 @@ export function Ads() {
         rules: {
             content: {
                 maxLength: 255
-            },
-            file: {
-                maxLength: 55
             },
             province: {
                 required: true
@@ -141,15 +139,16 @@ export function Ads() {
             accessor: (row) => row.is_visible ? 'Sí' : 'No'
         },
         {
+            label: 'Promocionado',
+            accessor: (row) => row.promoted ? 'Sí' : 'No'
+        },
+        {
             label: 'Loc./Mun.',
             accessor: 'city'
         },
         {
             label: 'Provincia',
-            accessor: (row) => row.province
-                .replace(', Antártida e Islas del Atlántico Sur', '')
-                .replace('Ciudad Autónoma de Buenos Aires', 'CABA')
-                .replace('Santiago', 'Sgo.')
+            accessor: 'province'
         },
         {
             label: 'Dirección',
@@ -238,7 +237,6 @@ export function Ads() {
                         categories={categories}
                         provinces={provinces}
                         cities={cities}
-                        isPrivate
                     />
                     <Dialog type="delete" width="60%" left="20%">
                         <h3>¿Borrar el aviso #{formData.id}?</h3>

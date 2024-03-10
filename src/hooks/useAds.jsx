@@ -33,7 +33,10 @@ export function useAds({ includeInvisibles, filter, page }) {
     async function getAds() {
         const { status, data } = await get()
         if (status === 200) {
-            setAds(data[0])
+            setAds([
+                ...data[0].filter(i => i.promoted),
+                ...data[0].filter(i => !i.promoted)
+            ])
             setCount(data[1])
             setLoadingAds(false)
         }

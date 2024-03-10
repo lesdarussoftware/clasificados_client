@@ -12,11 +12,10 @@ export function AddOrEditAd({
     disabled,
     categories,
     provinces,
-    cities,
-    isPrivate = false
+    cities
 }) {
 
-    const width = isPrivate ? '25%' : '33%'
+    const width = action === 'EDIT' ? '25%' : '33%'
 
     return (
         <Dialog type="new-edit" top="1%" left="1%" width="95%">
@@ -88,22 +87,22 @@ export function AddOrEditAd({
                             <input type="number" min={1} max={7} step={1} name="duration" id="duration" value={formData.duration} onChange={handleChange} />
                         </div>
                     </div>
-                    {isPrivate &&
+                    {action === 'EDIT' &&
                         <div style={{ width }} className="ad-form-column">
-                            <>
-                                <div className="form-group">
-                                    <label htmlFor="file">Archivo</label>
-                                    <input type="file" name="file" id="file" value={formData.file} onChange={handleChange} />
-                                    {errors.file?.type === 'maxLength' && <small>* El nombre del archivo es demasiado largo.</small>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="is_visible">Visible</label>
-                                    <input type="checkbox" name="is_visible" id="is_visible"
-                                        checked={formData.is_visible}
-                                        onChange={(e) => handleChange({ target: { name: 'is_visible', value: e.target.checked } })}
-                                    />
-                                </div>
-                            </>
+                            <div className="form-group">
+                                <label htmlFor="is_visible">Visible</label>
+                                <input type="checkbox" name="is_visible" id="is_visible"
+                                    checked={formData.is_visible}
+                                    onChange={(e) => handleChange({ target: { name: 'is_visible', value: e.target.checked } })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="promoted">Promocionado</label>
+                                <input type="checkbox" name="promoted" id="promoted"
+                                    checked={formData.promoted}
+                                    onChange={(e) => handleChange({ target: { name: 'promoted', value: e.target.checked } })}
+                                />
+                            </div>
                         </div>
                     }
                 </div>

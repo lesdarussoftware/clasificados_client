@@ -4,3 +4,4 @@ export const CATEGORIES_URL = `${BASE}/categories`
 export const USERS_URL = `${BASE}/users`
 export const ADS_URL = `${BASE}/advertisements`
 export const AUTH_URL = `${BASE}/auth`
+export const FILE_URL = BASE.replace('api', '')
