@@ -15,7 +15,7 @@ import './styles/App.css'
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter basename='/clasificados/'>
+      <BrowserRouter basename='/noavisos/'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/admin' element={<Login />} />
