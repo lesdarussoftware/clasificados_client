@@ -14,13 +14,13 @@ export function AdsContainer({ ads, count, page, setPage, setView }) {
                     <section className="adsContainer">
                         {ads.map(ad => (
                             <>
-                                {ad.file.length > 0 ?
+                                {/* {ad.file.length > 0 ?
                                     <div key={ad.id} className="adImg" onClick={() => {
                                         handleOpen('view-ad')
                                         setView(ad)
                                     }}>
                                         <img src={`${FILE_URL + ad.file}.jpeg`} alt={`Imagen del aviso número ${ad.id}.`} />
-                                    </div> :
+                                    </div> : */}
                                     <div key={ad.id} className="ad" onClick={() => {
                                         handleOpen('view-ad')
                                         setView(ad)
@@ -33,7 +33,7 @@ export function AdsContainer({ ads, count, page, setPage, setView }) {
                                         </p>
                                         {ad.promoted && <p className="promotedText">Promocionado</p>}
                                     </div>
-                                }
+                                {/* } */}
                             </>
                         ))}
                     </section>
